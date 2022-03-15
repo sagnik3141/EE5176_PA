@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import scipy.io
 import scipy.linalg
-from utils import zeropad, deblur
+from utils import zeropad, deblur, RMSE
 
 def main():
     ### Read Image ###
@@ -33,6 +33,9 @@ def main():
     deblurred = deblur(A, blurred_img)
     plt.imshow(deblurred)
     plt.show()
+
+    ### RMSE Value ###
+    print(f"RMSE between Original And Deblurred = {RMSE(img, deblurred)}")
 
 if __name__=="__main__":
     main()
