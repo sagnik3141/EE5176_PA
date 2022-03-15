@@ -48,9 +48,9 @@ def create_frame(img_fg, img_bg, time_step):
     else:
         img_fg_translated = img_fg
 
-    bg_mask = img_fg[:,:,0]==0
+    bg_mask = img_fg_translated[:,:,0]==0
     bg_mask = np.stack([bg_mask for i in range(3)], axis = 2)
 
-    merged_img = img_fg + img_bg*bg_mask
+    merged_img = img_fg_translated + img_bg*bg_mask
 
     return merged_img
