@@ -27,3 +27,11 @@ def deblur(A, blurred_img):
     deblurred = np.stack([R_channel, G_channel, B_channel], axis = 2)
 
     return deblurred
+
+def RMSE(img1, img2):
+    """
+    Returns RMSE given two images.
+    """
+    assert img1.shape == img2.shape, "Dimensions of images do not match."
+    img_diff = np.sum((img1-img2)**2)
+    img_len = img1.shape[0]*img1.shape[1]*img1.shape[2]
