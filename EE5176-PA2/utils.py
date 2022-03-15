@@ -35,3 +35,5 @@ def RMSE(img1, img2):
     assert img1.shape == img2.shape, "Dimensions of images do not match."
     img_diff = np.sum((img1-img2)**2)
     img_len = img1.shape[0]*img1.shape[1]*img1.shape[2]
+
+    return np.sqrt(img_diff/img_len)
