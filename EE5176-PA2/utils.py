@@ -37,3 +37,20 @@ def RMSE(img1, img2):
     img_len = img1.shape[0]*img1.shape[1]*img1.shape[2]
 
     return np.sqrt(img_diff/img_len)
+
+def create_frame(img_fg, img_bg, time_step):
+    """
+    This function translates the foreground by 'time_step' pixels
+    and merges it with the background.
+    """
+    if time_step:
+        img_fg_translated = np.concatenate((np.zeros((img_fg.shape[0], time_step, 3)), img_fg[:,:-time_step]), axis = 1)
+    else:
+        img_fg_translated = img_fg
+
+    bg_mask = img_fg[:,:,0]==0
+    bg_mask = np.stack([bg_mask for i in range(3)], axis = 2)
+
+    merged_img = img_fg + img_bg*bg_mask
+
+    return merged_img
