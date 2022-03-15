@@ -51,21 +51,19 @@ def main():
     # DFT Plot of Conventional Camera
     code = np.zeros((851,))
     code[:52] = 1/52.0
-    code_dft = fft(code)
-    plt.plot(code_dft)
+    plt.magnitude_spectrum(code, Fs = 1, scale = 'dB')
     plt.title(r"DFT of Conventional Code")
     plt.grid(True)
     plt.show()
 
     # DFT Plot of Code 1
-    code1_dft = fft(A1[:,0])
-    plt.plot(code1_dft)
+    plt.magnitude_spectrum(A1[:,0], Fs = 1, scale = 'dB')
     plt.title(r"DFT of Flutter Shutter Code 1")
     plt.grid(True)
     plt.show()
 
-    code2_dft = fft(A2[:,0])
-    plt.plot(code2_dft)
+    # DFT Plot of Code 2
+    plt.magnitude_spectrum(A2[:,0], Fs = 1, scale = 'dB')
     plt.title(r"DFT of Flutter Shutter Code 2")
     plt.grid(True)
     plt.show()
