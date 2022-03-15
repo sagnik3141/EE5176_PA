@@ -4,7 +4,7 @@ from PIL import Image
 import scipy.io
 import scipy.linalg
 from scipy.fft import fft
-from utils import zeropad, deblur
+from utils import zeropad, deblur, RMSE
 
 def main():
     ### Read Image ###
@@ -78,6 +78,10 @@ def main():
     plt.show()
     plt.imshow(deblurred2)
     plt.show()
+
+    ### RMSE Values ###
+    print(f"RMSE between Original And Deblurred using Code 1 = {RMSE(img, deblurred1)}")
+    print(f"RMSE between Original And Deblurred using Code 2 = {RMSE(img, deblurred2)}")
 
 if __name__=="__main__":
     main()
