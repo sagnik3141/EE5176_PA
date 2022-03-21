@@ -43,6 +43,8 @@ def create_frame(img_fg, img_bg, fg_trans, bg_trans):
     This function translates the foreground by 'fg_trans' pixels
     and merges it with the background which is transalted by 'bg_trans' pixels.
     """
+    img_fg = np.concatenate((img_fg, np.zeros((img_fg.shape[0], 53, 3))), axis = 1)
+    img_bg = np.concatenate((img_bg, np.zeros((img_bg.shape[0], 53, 3))), axis = 1)
     if fg_trans:
         img_fg_translated = np.concatenate((np.zeros((img_fg.shape[0], fg_trans, 3)), img_fg[:,:-fg_trans]), axis = 1)
     else:
@@ -55,7 +57,7 @@ def create_frame(img_fg, img_bg, fg_trans, bg_trans):
 
     bg_mask = img_fg_translated[:,:,0]==0
     bg_mask = np.stack([bg_mask for i in range(3)], axis = 2)
-
+    
     merged_img = img_fg_translated + img_bg_translated*bg_mask
 
     return merged_img
