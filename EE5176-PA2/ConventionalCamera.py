@@ -20,6 +20,8 @@ def main():
     blurred_img+=noise
     plt.imshow(blurred_img)
     plt.show()
+    save_img = Image.fromarray(blurred_img)
+    save_img.save("results/CC_blurred.png")
 
     ### Generate Toeplitz Matrix ###
     A = np.zeros((851, 800))
@@ -28,11 +30,15 @@ def main():
 
     plt.imshow(A)
     plt.show()
+    save_img = Image.fromarray(A)
+    save_img.save("results/CC_toeplitz.png")
 
     ### Deblurring - Least Squares ###
     deblurred = deblur(A, blurred_img)
     plt.imshow(deblurred)
     plt.show()
+    save_img = Image.fromarray(deblurred)
+    save_img.save("results/CC_deblurred.png")
 
     ### RMSE Value ###
     print(f"RMSE between Original And Deblurred = {RMSE(img, deblurred)}")
