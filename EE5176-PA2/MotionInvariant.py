@@ -18,8 +18,8 @@ def main():
     for i in range(53):
         blurred_img1+=create_frame(img_fg, img_bg, i, 0)/53.0
 
-    imageio.imwrite('results/MI_blurred1.png', blurred_img1*255.0)
-    plt.imshow(blurred_img1)
+    imageio.imwrite('results/MI_blurred1.png', blurred_img1[:,:-53]*255.0)
+    plt.imshow(blurred_img1[:,:-53])
     plt.show()
 
     ### Generating Blurred Image (With Camera Motion) ###

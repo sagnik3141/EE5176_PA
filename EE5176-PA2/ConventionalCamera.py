@@ -40,7 +40,7 @@ def main():
     plt.show()
 
     ### RMSE Value ###
-    print(f"RMSE between Original And Deblurred = {RMSE(img, deblurred)}")
+    print(f"RMSE between Original And Deblurred = {RMSE(img, np.clip(deblurred, 0, 1))}")
 
 if __name__=="__main__":
     main()

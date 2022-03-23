@@ -88,8 +88,8 @@ def main():
     plt.show()
 
     ### RMSE Values ###
-    print(f"RMSE between Original And Deblurred using Code 1 = {RMSE(img, deblurred1)}")
-    print(f"RMSE between Original And Deblurred using Code 2 = {RMSE(img, deblurred2)}")
+    print(f"RMSE between Original And Deblurred using Code 1 = {RMSE(img, np.clip(deblurred1, 0 ,1))}")
+    print(f"RMSE between Original And Deblurred using Code 2 = {RMSE(img, np.clip(deblurred2, 0 ,1))}")
 
     ### Deblurring without noise ###
     # Generate Toeplitz Matrix for Conventional Camera
@@ -105,6 +105,11 @@ def main():
     deblurredcc_nn = deblur(A, blurred_img)
     deblurred1_nn = deblur(A1, blurred_img1-noise)
     deblurred2_nn = deblur(A2, blurred_img2-noise)
+
+    # RMSE
+    print(f"RMSE between Original And Deblurred using Conventional Camera without Noise = {RMSE(img, np.clip(deblurredcc_nn, 0, 1))}")
+    print(f"RMSE between Original And Deblurred using Code 1 without Noise = {RMSE(img, np.clip(deblurred1_nn, 0 ,1))}")
+    print(f"RMSE between Original And Deblurred using Code 2 without Noise = {RMSE(img, np.clip(deblurred2_nn, 0, 1))}")
 
     imageio.imwrite('results/CC_deblurred_nn.png', deblurredcc_nn*255.0)
     imageio.imwrite('results/FS_deblurred1_nn.png', deblurred1_nn*255.0)
