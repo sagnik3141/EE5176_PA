@@ -45,8 +45,10 @@ def create_frame(img_fg, img_bg, fg_trans, bg_trans):
     """
     img_fg = np.concatenate((img_fg, np.zeros((img_fg.shape[0], 53, 3))), axis = 1)
     img_bg = np.concatenate((img_bg, np.zeros((img_bg.shape[0], 53, 3))), axis = 1)
-    if fg_trans:
+    if fg_trans>0:
         img_fg_translated = np.concatenate((np.zeros((img_fg.shape[0], fg_trans, 3)), img_fg[:,:-fg_trans]), axis = 1)
+    elif fg_trans<0:
+        img_fg_translated = np.concatenate((img_fg[:,-fg_trans:], np.zeros((img_fg.shape[0], -fg_trans, 3))), axis = 1)
     else:
         img_fg_translated = img_fg
 
