@@ -37,4 +37,4 @@ def estimateCRF(Z, B, l, w):
         A[eqn_num][i+2] = l*w[i+1]
         eqn_num+=1
 
-    return np.linalg.solve(A, b, rcond = None)[0]
+    return np.linalg.solve(A, b, rcond = None)[0][:256]
