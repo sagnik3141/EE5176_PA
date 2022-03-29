@@ -13,8 +13,8 @@ def estimateCRF(Z, B, l, w):
     n = 256 # Range of Pixel Values
 
     # Ax=b
-    A = np.zeros(Z.shape[0]*Z.shape[1]+n+1, n+Z.shape[0])
-    b = np.zeros(A.shape[0], 1)
+    A = np.zeros((Z.shape[0]*Z.shape[1]+n+1, n+Z.shape[0]))
+    b = np.zeros((A.shape[0], 1))
 
     # Setting up equations
     eqn_num = 0
