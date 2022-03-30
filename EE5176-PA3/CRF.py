@@ -36,5 +36,5 @@ def estimateCRF(Z, B, l, w):
         A[eqn_num][i+1] = -2*l*w[i+1]
         A[eqn_num][i+2] = l*w[i+1]
         eqn_num+=1
-    print(A.shape)
+    
     return np.linalg.lstsq(A, b, rcond = None)[0][:256]
