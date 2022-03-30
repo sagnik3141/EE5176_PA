@@ -11,12 +11,12 @@ def main():
     Z = np.transpose(Z, (1,2,3,0))
     Z = Z.reshape((-1, 3, 16))
     ZR, ZG, ZB = [Z[:, i, :] for i in range(3)] # Separating Color Channels
+    w = [z if z<=255/2 else 255-z for z in range(256)] # Weightage of each pixel value
     ZR = sampler(ZR, w)
     ZG = sampler(ZR, w)
     ZB = sampler(ZR, w)
 
     ### CRF Estimation ###
-    w = [z if z<=255/2 else 255-z for z in range(256)] # Weightage of each pixel value
     l = 0.1 # Smoothness Constant
     B = [np.log((1/2048)*np.float_power(2, k)) for k in range(16)] # Log Exposures
 
